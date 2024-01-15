@@ -16,13 +16,16 @@ async function createDato(req, res) {
 // Operación Read (Leer)
 async function getDatos(req, res) {
   try {
+    console.log('Antes de la consulta a la base de datos');
     const result = await db.query('SELECT * FROM vista_tareas');
+    console.log('Después de la consulta a la base de datos');
     res.json(result.rows);
   } catch (error) {
     console.error('Error al obtener datos:', error);
-    res.status(500).json({ mensaje: 'Error interno del servidor' });
+    res.status(500).json({ mensaje: `Error interno del servidor: ${error.message}` });
   }
 }
+
 
 // Operación Update (Actualizar)
 async function updateDato(req, res) {
