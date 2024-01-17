@@ -33,7 +33,7 @@ async function updateDato(req, res) {
   const nuevosDatos = req.body;
 
   try {
-    const result = await db.query('UPDATE tu_tabla SET nombre = $1 WHERE id = $2 RETURNING *', [nuevosDatos.nombre, id]);
+    const result = await db.query('UPDATE tareas SET nombre = $1 WHERE id = $2 RETURNING *', [nuevosDatos.nombre, id]);
 
     if (result.rows.length > 0) {
       res.json(result.rows[0]);
@@ -51,7 +51,7 @@ async function deleteDato(req, res) {
   const id = parseInt(req.params.id);
 
   try {
-    const result = await db.query('DELETE FROM tu_tabla WHERE id = $1 RETURNING *', [id]);
+    const result = await db.query('DELETE FROM tareas WHERE id = $1 RETURNING *', [id]);
 
     if (result.rows.length > 0) {
       res.json({ mensaje: 'Dato eliminado exitosamente' });
