@@ -26,6 +26,18 @@ async function getDatos(req, res) {
   }
 }
 
+async function getMaterias(req, res) {
+  try {
+    console.log('Antes de la consulta a la base de datos');
+    const result = await db.query('SELECT * FROM materias');
+    console.log('Después de la consulta a la base de datos');
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Error al obtener datos:', error);
+    res.status(500).json({ mensaje: `Error interno del servidor: ${error.message}` });
+  }
+}
+
 // Operación Delete (Eliminar)
 async function deleteDato(req, res) {
   const id = parseInt(req.params.id);
@@ -81,5 +93,5 @@ async function getDatoPorId(req, res) {
 
 
 
-module.exports = { createDato, getDatos, updateDato, deleteDato, getDatoPorId };
+module.exports = { createDato, getDatos, updateDato, deleteDato, getDatoPorId, getMaterias };
 
