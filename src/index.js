@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');  // Importa cors
-const { createDato, getDatos, updateDato, deleteDato, getDatoPorId, getMaterias} = require('./controllers');
+const { createDato, getDatos, updateDato, deleteDato, getDatoPorId, getMaterias, contarTareas} = require('./controllers');
 
 const app = express();
 const port = process.env.PORT || 3000;
