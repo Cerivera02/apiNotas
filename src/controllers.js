@@ -91,7 +91,17 @@ async function getDatoPorId(req, res) {
   }
 }
 
+//Contar las tareas de la tabla tareas
+async function contarTareas(req, res) {
+  try {
+    const result = await db.query('SELECT COUNT(*) FROM tareas');
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error('Error al obtener datos:', error);
+    res.status(500).json({ mensaje: `Error interno del servidor: ${error.message}` });
+  }
+}
 
 
-module.exports = { createDato, getDatos, updateDato, deleteDato, getDatoPorId, getMaterias };
+module.exports = { createDato, getDatos, updateDato, deleteDato, getDatoPorId, getMaterias, contarTareas };
 
